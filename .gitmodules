@@ -1,0 +1,3 @@
+[submodule "Plugins/Unreal-Flecs"]
+	path = Plugins/Unreal-Flecs
+	url = https://github.com/Reddy-dev/Unreal-Flecs.git
