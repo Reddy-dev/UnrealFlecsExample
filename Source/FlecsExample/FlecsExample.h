@@ -4,3 +4,12 @@
 
 #include "CoreMinimal.h"
 
+class FFlecsExampleModule : public IModuleInterface
+{
+public:
+
+	/** IModuleInterface implementation */
+	virtual void StartupModule() override;
+	virtual void ShutdownModule() override;
+	
+}; // class FFlecsExampleModule
