@@ -23,6 +23,8 @@ USTRUCT(BlueprintType)
 struct FLECSEXAMPLE_API FFlecsExampleVelocity
 {
 	GENERATED_BODY()
+	
+	static constexpr bool DontFragment = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Flecs Example")
 	FVector UnitsPerSecond = FVector::ZeroVector;
@@ -32,7 +34,7 @@ template <>
 struct TFlecsComponentTraits<FFlecsExampleVelocity> : public TFlecsComponentTraitsBase<FFlecsExampleVelocity>
 {
 	// Enables or disables this component per entity without moving the entity to a different table.
-	static constexpr bool CanToggle = true;
+	static constexpr bool DontFragment = true;
 }; // struct TFlecsComponentTraits<FFlecsExampleVelocity>
 
 /** A custom trait component which can be attached to other component definitions. */
@@ -77,8 +79,8 @@ struct FLECSEXAMPLE_API FFlecsExampleManualHealth
 	float Maximum = 100.0f;
 }; // struct FFlecsExampleManualHealth
 
-template <>
-struct TFlecsComponentTraits<FFlecsExampleManualHealth> : public TFlecsComponentTraitsBase<FFlecsExampleManualHealth>
+// alternative way of writing out the traits
+FLECS_COMPONENT_TRAITS(FFlecsExampleManualHealth)
 {
 	static constexpr bool AutoRegister = false;
 }; // struct TFlecsComponentTraits<FFlecsExampleManualHealth>

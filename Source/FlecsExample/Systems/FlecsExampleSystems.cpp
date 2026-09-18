@@ -21,12 +21,13 @@ void UFlecsExampleMovementSystem::RunEachIterator(const TSolidNotNull<UFlecsWorl
 	const double DeltaTime = InIterator.delta_time();
 	
 	const auto PositionField= InIterator.field<FFlecsExamplePosition>(0);
-	const auto VelocityField = InIterator.field<const FFlecsExampleVelocity>(1);
 	
 	for (const FFlecsId EntityIndex : InIterator)
 	{
 		auto& [PositionValue] = PositionField[EntityIndex];
-		const auto& [VelocityUnitsPerSecond] = VelocityField[EntityIndex];
+		
+		// since the component is sparse we need to use field at
+		const auto& [VelocityUnitsPerSecond] = InIterator.field_at<const FFlecsExampleVelocity>(1, EntityIndex);
 		
 		PositionValue += (VelocityUnitsPerSecond * DeltaTime);
 	}
