@@ -1,5 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+#include "flecs.h"
+
 #include "FlecsExample.h"
 
 #include "Modules/ModuleManager.h"
@@ -8,7 +10,7 @@
 
 void FFlecsExampleModule::StartupModule()
 {
-	UE::Flecs::FFlecsModuleRegistry::Get().RegisterUnrealFlecsModule("UnrealFlecs");
+	UE::Flecs::FFlecsModuleRegistry::Get().RegisterUnrealFlecsModule("FlecsExample");
 }
 
 void FFlecsExampleModule::ShutdownModule()
