@@ -14,7 +14,7 @@ void UFlecsExampleRegistrationSubsystem::OnFlecsWorldInitialized(const TSolidNot
 	// Typed C++ registration API.
 	InWorld->RegisterComponentType<FFlecsExampleManualCounter>();
 
-	// Reflection registration API for a USTRUCT.
+	// Reflection registration API for a USTRUCT. (can be called in blueprints)
 	InWorld->RegisterComponentType(FFlecsExampleManualHealth::StaticStruct());
 
 	// Explicit UObject registration API. This class returns false from ShouldAutoRegisterFromCDO().
