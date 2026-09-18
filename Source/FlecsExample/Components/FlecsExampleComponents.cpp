@@ -1,6 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Components/FlecsExampleComponents.h"
+#include "FlecsExampleComponents.h"
 
 REGISTER_FLECS_COMPONENT(FFlecsExamplePosition);
 REGISTER_FLECS_COMPONENT(FFlecsExampleVelocity);

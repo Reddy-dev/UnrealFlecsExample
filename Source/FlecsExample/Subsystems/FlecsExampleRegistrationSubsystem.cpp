@@ -1,9 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "Subsystems/FlecsExampleRegistrationSubsystem.h"
+#include "FlecsExampleRegistrationSubsystem.h"
 
-#include "Components/FlecsExampleComponents.h"
-#include "Systems/FlecsExampleSystems.h"
+#include "FlecsExample/Components/FlecsExampleComponents.h"
+#include "FlecsExample/Systems/FlecsExampleSystems.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlecsExampleRegistrationSubsystem)
 

@@ -11,17 +11,25 @@ void UFlecsExampleMovementSystem::BuildSystem(const TSolidNotNull<const UFlecsWo
 {
 	InBuilder
 		.Phase(EFlecsPhaseType::OnUpdate)
-		.With<FFlecsExamplePosition>() // 0
+		.With<FFlecsExamplePosition&>() // 0
 		.With<const FFlecsExampleVelocity>(); // 1
 }
 
-void UFlecsExampleMovementSystem::EachIterator(const TSolidNotNull<UFlecsWorldInterfaceObject*> InWorld,
-	flecs::iter& InIterator, const FFlecsId InIndex)
+void UFlecsExampleMovementSystem::RunEachIterator(const TSolidNotNull<UFlecsWorldInterfaceObject*> InWorld,
+	flecs::iter& InIterator)
 {
-	auto& [Position] = InIterator.field_at<FFlecsExamplePosition>(0, InIndex);
-	const auto& [Velocity] = InIterator.field_at<const FFlecsExampleVelocity>(1, InIndex);
-
-	Position += Velocity * InIterator.delta_time();
+	const double DeltaTime = InIterator.delta_time();
+	
+	const auto PositionField= InIterator.field<FFlecsExamplePosition>(0);
+	const auto VelocityField = InIterator.field<const FFlecsExampleVelocity>(1);
+	
+	for (const FFlecsId EntityIndex : InIterator)
+	{
+		auto& [PositionValue] = PositionField[EntityIndex];
+		const auto& [VelocityUnitsPerSecond] = VelocityField[EntityIndex];
+		
+		PositionValue += (VelocityUnitsPerSecond * DeltaTime);
+	}
 }
 
 void UFlecsExampleManualHealthSystem::BuildSystem(const TSolidNotNull<const UFlecsWorldInterfaceObject*> InWorld,
@@ -29,7 +37,7 @@ void UFlecsExampleManualHealthSystem::BuildSystem(const TSolidNotNull<const UFle
 {
 	InBuilder
 		.Phase(EFlecsPhaseType::PreUpdate)
-		.With<FFlecsExampleManualHealth>(); // 0
+		.With<FFlecsExampleManualHealth&>(); // 0
 }
 
 void UFlecsExampleManualHealthSystem::EachIterator(const TSolidNotNull<UFlecsWorldInterfaceObject*> InWorld,
