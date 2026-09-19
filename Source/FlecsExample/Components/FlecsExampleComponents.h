@@ -24,6 +24,7 @@ struct FLECSEXAMPLE_API FFlecsExampleVelocity
 {
 	GENERATED_BODY()
 	
+	// there is no reason for this component to be DontFragment other than to show off that it this is possible
 	static constexpr bool DontFragment = true;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Flecs Example")
