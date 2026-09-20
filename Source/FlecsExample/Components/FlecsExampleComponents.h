@@ -93,4 +93,11 @@ template <>
 struct TFlecsComponentTraits<FFlecsExampleManualCounter> : public TFlecsComponentTraitsBase<FFlecsExampleManualCounter>
 {
 	static constexpr bool AutoRegister = false;
+	
+	static void PostRegister(const FFlecsComponentHandle& ComponentHandle)
+	{
+		ComponentHandle
+			.AddMember(TEXT("Value"), &FFlecsExampleManualCounter::Value);
+	}
+	
 }; // struct TFlecsComponentTraits<FFlecsExampleManualCounter>
