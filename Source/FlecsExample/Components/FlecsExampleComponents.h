@@ -31,12 +31,11 @@ struct FLECSEXAMPLE_API FFlecsExampleVelocity
 	FVector UnitsPerSecond = FVector::ZeroVector;
 }; // struct FFlecsExampleVelocity
 
-template <>
-struct TFlecsComponentTraits<FFlecsExampleVelocity> : public TFlecsComponentTraitsBase<FFlecsExampleVelocity>
+FLECS_COMPONENT_TRAITS(FFlecsExampleVelocity)
 {
 	// Enables or disables this component per entity without moving the entity to a different table.
 	static constexpr bool DontFragment = true;
-}; // struct TFlecsComponentTraits<FFlecsExampleVelocity>
+}; // struct FLECS_COMPONENT_TRAITS(FFlecsExampleVelocity)
 
 /** A custom trait component which can be attached to other component definitions. */
 USTRUCT()
@@ -45,11 +44,10 @@ struct FLECSEXAMPLE_API FFlecsExamplePersistentTrait
 	GENERATED_BODY()
 }; // struct FFlecsExamplePersistentTrait
 
-template <>
-struct TFlecsComponentTraits<FFlecsExamplePersistentTrait> : public TFlecsComponentTraitsBase<FFlecsExamplePersistentTrait>
+FLECS_COMPONENT_TRAITS(FFlecsExamplePersistentTrait)
 {
 	static constexpr bool Trait = true;
-}; // struct TFlecsComponentTraits<FFlecsExamplePersistentTrait>
+}; // struct FLECS_COMPONENT_TRAITS(FFlecsExamplePersistentTrait)
 
 /** This component definition receives FFlecsExamplePersistentTrait during registration. */
 USTRUCT(BlueprintType)
@@ -61,11 +59,10 @@ struct FLECSEXAMPLE_API FFlecsExampleDisplayName
 	FString Value;
 }; // struct FFlecsExampleDisplayName
 
-template <>
-struct TFlecsComponentTraits<FFlecsExampleDisplayName> : public TFlecsComponentTraitsBase<FFlecsExampleDisplayName>
+FLECS_COMPONENT_TRAITS(FFlecsExampleDisplayName)
 {
 	using CustomTraits = TTuple<FFlecsExamplePersistentTrait>;
-}; // struct TFlecsComponentTraits<FFlecsExampleDisplayName>
+}; // struct FLECS_COMPONENT_TRAITS(FFlecsExampleDisplayName)
 
 /** Registered per world through UFlecsExampleRegistrationSubsystem's reflected-type API example. */
 USTRUCT(BlueprintType)
@@ -80,11 +77,10 @@ struct FLECSEXAMPLE_API FFlecsExampleManualHealth
 	float Maximum = 100.0f;
 }; // struct FFlecsExampleManualHealth
 
-// alternative way of writing out the traits
 FLECS_COMPONENT_TRAITS(FFlecsExampleManualHealth)
 {
 	static constexpr bool AutoRegister = false;
-}; // struct TFlecsComponentTraits<FFlecsExampleManualHealth>
+}; // struct FLECS_COMPONENT_TRAITS(FFlecsExampleManualHealth)
 
 /** A non-reflected C++ component registered through the subsystem's typed API example. */
 struct FLECSEXAMPLE_API FFlecsExampleManualCounter
@@ -92,6 +88,7 @@ struct FLECSEXAMPLE_API FFlecsExampleManualCounter
 	int32 Value = 0;
 }; // struct FFlecsExampleManualCounter
 
+// alternative way of writing out the traits
 template <>
 struct TFlecsComponentTraits<FFlecsExampleManualCounter> : public TFlecsComponentTraitsBase<FFlecsExampleManualCounter>
 {
