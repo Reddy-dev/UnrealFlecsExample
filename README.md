@@ -1,5 +1,7 @@
 # UnrealFlecsExample
 
+requires 5.8 or higher
+
 Small project-level Unreal-Flecs examples live under `Source/FlecsExample`:
 
 - `Components/FlecsExampleComponents.*` shows reflected and native C++ components, the `DontFragment` component option, a custom trait, automatic type registration, and manual-only types.
